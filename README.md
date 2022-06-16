@@ -1,7 +1,5 @@
 # preload
 
-> This is currently a WIP
-
 This preload is a clone of [Behdad Esfahbod's preload](http://preload.sf.net).
 The only difference is that this project uses [`meson`](https://mesonbuild.com)
 as its build system.
@@ -11,6 +9,11 @@ that you check [`meson.build`](/meson.build) first.
 
 Configuration file for `preload` is generated from buildfile (`meson.build`)
 itself.
+
+## Releases
+![Build Status](https://copr.fedorainfracloud.org/coprs/kylegospo/preload/package/preload/status_image/last_build.png?)
+
+You can get releases for Fedora from my [Copr](https://copr.fedorainfracloud.org/coprs/kylegospo/preload/).
 
 ## Building
 
@@ -49,14 +52,6 @@ meson test -C build
 ```
 
 to run the tests.
-
-## Why `meson`?
-
-- Because it is easier to configure.
-- Also because I hate Make, CMake and all other shit.
-- Also because I had no intention to understand how the author's build config
-  worked/works.
-- Because I wanted a cleaner codebase.
 
 ## Style Guide
 
