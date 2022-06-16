@@ -8,7 +8,6 @@ URL:            https://github.com/KyleGospo/preload
 Source:         {{{ git_dir_pack }}}
 
 Requires:       systemd
-Requires:       logrotate
 
 BuildRequires:  git
 BuildRequires:  meson
@@ -52,19 +51,6 @@ IOSchedulingClass=3
 WantedBy=multi-user.target
 EOF
 
-install -d %{buildroot}%{_sysconfdir}/logrotate.d
-cat > %{buildroot}%{_sysconfdir}/logrotate.d/preload << EOF
-/var/log/preload.log {
-    missingok
-    notifempty
-    size=64k
-    compress
-    postrotate
-        /bin/kill -HUP `/sbin/pidof preload 2>/dev/null` 2> /dev/null || true
-    endscript
-}
-EOF
-
 install -d %{buildroot}%{_sysconfdir}/sysconfig
 cat > %{buildroot}%{_sysconfdir}/sysconfig/preload << EOF
 # Miminum memory that the system should have for preload to be launched.
@@ -95,11 +81,9 @@ mkdir -p %{buildroot}%{_localstatedir}/lib/preload/
 %doc README.md
 %config(noreplace) %{_sysconfdir}/preload.conf
 %config(noreplace) %{_sysconfdir}/sysconfig/preload
-%config(noreplace) %{_sysconfdir}/logrotate.d/preload
 %{_datadir}/man/man8/preload.8.gz
 %{_sbindir}/preload
 %{_unitdir}/preload.service
-%attr(0644,root,root) %ghost %config(missingok,noreplace) %{_localstatedir}/log/preload.log
 %attr(0644,root,root) %ghost %config(missingok,noreplace) %{_localstatedir}/lib/preload/preload.state
 %attr(0755,root,root) %dir %{_localstatedir}/lib/preload
 
