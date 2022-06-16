@@ -41,7 +41,7 @@ After=kdm.service
 
 [Service]
 Type=forking
-ExecStart=/usr/bin/preload --verbose 1
+ExecStart=/usr/sbin/preload --verbose 1
 Restart=always
 RestartSec=1
 Nice=19
