@@ -28,7 +28,7 @@ preload is an adaptive readahead daemon. It monitors applications that users run
 {{{ git_dir_setup_macro }}}
 
 %build
-meson build -Dprefix=%{_prefix} --bindir=%{_sbindir}
+meson build --prefix=%{_prefix} --bindir=%{_sbindir}
 ninja -C build
 
 %install
@@ -38,7 +38,7 @@ install -d %{buildroot}%{_unitdir}
 cat > %{buildroot}%{_unitdir}/preload.service << EOF
 [Unit]
 Description=Adaptive readahead daemon
-After=kdm.service
+After=gdm.service sddm.service
 
 [Service]
 Type=forking
