@@ -1,3 +1,5 @@
+# ℹ️ Check out https://github.com/arunanshub/preload-rs for preload implemented in Rust
+
 # preload
 
 This preload is a clone of [Behdad Esfahbod's preload](http://preload.sf.net).
